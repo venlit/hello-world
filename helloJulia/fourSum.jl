@@ -25,6 +25,7 @@ function presence(arr, x)
 	for i in arr
 		if issetequal(i, x) 
 			absence = false
+			break
 		end
 	end
 	return absence
@@ -46,14 +47,37 @@ function scan(nums, target)
 	return arr
 end
 
-function main()
-	nums = [1, 0, -1, 0, -2, 2]
-	target = 0
+function scan2(nums)
+	c = Dict('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4)
+	arr = []
 
-	println(scan(nums, target))
+	while c['a'] < length(nums) - 3
+		if !(nums[c['a']] + nums[c['b']] + nums[c['c']] + nums[c['d']] in arr)
+			push!(arr, nums[c['a']] + nums[c['b']] + nums[c['c']] + nums[c['d']])
+		end
+		move(c, length(nums))
+	end
+
+	return arr
+
+end
+
+function main()
 	
-	nums = [2, 2, 2, 2, 2]
-	target = 8
+	println("enter amount of nums you want to enter (must be greater than 4)")
+	total = parse(UInt32,readline())
+	nums = []
+
+	for i = 1:total
+		println("enter number (positive or negative intergers): ")
+		n = parse(Int32, readline())
+		push!(nums, n)
+	end
+	
+	println("all possible target values: ", scan2(nums))
+
+	println("enter target value (positive or negative interger): ")
+	target = parse(Int32, readline())
 
 	println(scan(nums, target))
 
