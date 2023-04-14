@@ -65,15 +65,13 @@ end
 function main()
 	
 	println("enter amount of nums you want to enter (must be greater than 4)")
-	total = parse(UInt32,readline())
-	nums = []
-
-	for i = 1:total
-		println("enter number (positive or negative intergers): ")
-		n = parse(Int32, readline())
-		push!(nums, n)
-	end
-	
+	x = readline()
+    y = collect(split(x, ", "))
+    z = []
+    for i in y
+        push!(z, parse(Int32, i))
+    end
+    println(z)
 	println("all possible target values: ", scan2(nums))
 
 	println("enter target value (positive or negative interger): ")
