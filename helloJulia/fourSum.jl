@@ -64,14 +64,16 @@ end
 
 function main()
 	
-	println("enter amount of nums you want to enter (must be greater than 4)")
-	x = readline()
-    y = collect(split(x, ", "))
-    z = []
-    for i in y
-        push!(z, parse(Int32, i))
-    end
-    println(z)
+	nums = []
+	
+	println("Enter all the numbers you want to use, separated by a comma. \nThere has to be more than 4:")
+	str = readline()
+	numbers = collect(split(str, ","))
+
+	for i in numbers
+		push!(nums, parse(Int32, i))
+	end
+
 	println("all possible target values: ", scan2(nums))
 
 	println("enter target value (positive or negative interger): ")
